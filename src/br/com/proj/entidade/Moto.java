@@ -5,6 +5,7 @@ public class Moto {
 	private int id;
 	private String descricao;
 	private int ano;
+	
 	public int getId() {
 		return id;
 	}
