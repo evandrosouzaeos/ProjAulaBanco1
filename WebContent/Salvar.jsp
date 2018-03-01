@@ -24,7 +24,7 @@
 
 		MotoDB db = new MotoDB();
 
-		if (db.Insert(moto)) {
+		if (db.insert(moto)) {
 			System.out.println("Inserido com sucesso!");
 		} else {
 			System.out.println("Erro");

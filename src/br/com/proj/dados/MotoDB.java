@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import br.com.proj.util.Conexao;
 import br.com.proj.entidade.Moto;
 
@@ -34,20 +34,32 @@ public class MotoDB implements IMotoDB {
 		sb.append(" (id, descricao, ano) values (?, ?, ?)");
 
 		try {
-			ps = this.con.PrepareStatement(sb.toString());
+			
+			ps = this.con.prepareStatement(sb.toString());
 
 			ps.setInt(1, moto.getId());
 			ps.setString(2, moto.getDescricao());
 			ps.setInt(3, moto.getAno());
 
-			return ps.execute();
+			ps.execute();
 			
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		
+		return false;
 	}
+	
 
 	@Override
 	public boolean update(Moto moto) {
